@@ -44,7 +44,7 @@ module.exports = {
     },
     configItem: {
       elemId: 'sys_display.incident.cmdb_ci',
-      elemVal: 'hpit:webcustcare',
+      elemVal: 'hpit:w-webcustcare-prd',
       onlyIfEmpty: true,
       waitTime: 1000
     },
@@ -66,8 +66,5 @@ module.exports = {
       onlyIfEmpty: false,
       waitTime: 5000
     }
-  },
-  report: {
-    url: 'https://hpitprod.service-now.com/nav_to.do?uri=%2Fincident_list.do%3Fsysparm_query%3Dassignment_groupDYNAMICd6435e965f510100a9ad2572f2b47744%255Estate%253D2%255EORstate%253D3%255EORstate%253D1%255EORstate%253D35%26sysparm_first_row%3D1%26sysparm_view%3D'
   }
 };

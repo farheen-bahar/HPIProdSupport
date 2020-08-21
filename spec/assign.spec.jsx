@@ -1,7 +1,6 @@
 const fs = require('fs');
 const { element, browser } = require('protractor');
 const { dashboard, incidents, updateFields } = require('../properties.jsx');
-const EC = protractor.ExpectedConditions;
 let incr = 0;
 
 const fillWithoutEvent = async (fieldData, nullCheck = false) => {
@@ -95,8 +94,8 @@ const automateAssignment = async () => {
                             await browser.sleep(updateFields.businessService.waitTime);
 
                             // Enter Value for Configuration Item field if empty
-                            // await fillWithKeypressEvent(updateFields.configItem);
-                            // await browser.sleep(updateFields.configItem.waitTime);
+                            await fillWithKeypressEvent(updateFields.configItem);
+                            await browser.sleep(updateFields.configItem.waitTime);
 
                             // Contact Type Selection
                             await fillWithoutEvent(updateFields.contactType);

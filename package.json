@@ -3,18 +3,15 @@
     "pversion": "protractor --version",
     "wdupdate": "webdriver-manager update",
     "start": "webdriver-manager start",
-    "assign": "protractor conf.jsx --specs='spec/assign.spec.jsx'",
-    "report": "protractor conf.jsx --specs='spec/report.spec.jsx'",
-    "report-process": "node process-report.jsx",
     "cron": "node cron-server.jsx",
+    "assign": "protractor conf.jsx --specs='spec/assign.spec.jsx'",
     "assign-s": "protractor conf.jsx --specs='spec/assign-standalone.spec.jsx'"
   },
   "dependencies": {
-    "convert-excel-to-json": "^1.7.0",
+    "child_process": "^1.0.2",
     "express": "^4.17.1",
     "fs": "0.0.1-security",
     "node-cron": "^2.0.3",
-    "officegen": "^0.6.4",
     "protractor": "^7.0.0"
   },
   "devDependencies": {
