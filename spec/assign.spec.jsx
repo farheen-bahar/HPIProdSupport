@@ -94,8 +94,8 @@ const automateAssignment = async () => {
                             await browser.sleep(updateFields.businessService.waitTime);
 
                             // Enter Value for Configuration Item field if empty
-                            await fillWithKeypressEvent(updateFields.configItem);
-                            await browser.sleep(updateFields.configItem.waitTime);
+                            // await fillWithKeypressEvent(updateFields.configItem);
+                            // await browser.sleep(updateFields.configItem.waitTime);
 
                             // Contact Type Selection
                             await fillWithoutEvent(updateFields.contactType);
