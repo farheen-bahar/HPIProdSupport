@@ -18,7 +18,7 @@ exports.config = {
     nativeEvents: false,
      chromeOptions: {
       w3c: false,
-      // args: ['--headless', '--disable-gpu'],
+      args: ['--headless', '--disable-gpu'],
       // args: ['--user-data-dir=C:/Users/ASUS/AppData/Local/Google/Chrome/User Data'],
       prefs: {
         credentials_enable_service: true,

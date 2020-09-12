@@ -92,6 +92,9 @@ const automateAssignment = async () => {
                             // Enter Value for Business Service field if empty
                             await fillWithKeypressEvent(updateFields.businessService);
                             await browser.sleep(updateFields.businessService.waitTime);
+                            await browser.actions().sendKeys(protractor.Key.ENTER).perform();
+                            await browser.actions().sendKeys(protractor.Key.TAB).perform();
+                            await browser.sleep(1000);
 
                             // Enter Value for Configuration Item field if empty
                             // await fillWithKeypressEvent(updateFields.configItem);

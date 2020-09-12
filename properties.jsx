@@ -40,7 +40,7 @@ module.exports = {
       elemId: 'sys_display.incident.business_service',
       elemVal: 'hpit:w-webcustcare-prd',
       onlyIfEmpty: true,
-      waitTime: 3000
+      waitTime: 5000
     },
     configItem: {
       elemId: 'sys_display.incident.cmdb_ci',
