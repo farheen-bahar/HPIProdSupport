@@ -183,15 +183,16 @@ describe('Servicenow Automation', () => {
     await browser.driver.get(dashboard.url);
 
     // Timeout to wait for the URL to be opened in the browser
-    setTimeout(async () => {
+    await setTimeout(async () => {
       await browser.driver.getCurrentUrl().then(async (url) => {
         if (url.indexOf(login.domain) >= 0) {
           await browser.driver.get(url);
-          setTimeout(async () => {
+          await setTimeout(async () => {
             // Calling the process method to login
             await automateLogin();
           }, login.loadingTime);
         }
+        await browser.sleep(1000);
         // Calling the process method where all tasks are assigned
         await automateAssignment();
       });
