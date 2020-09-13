@@ -1,5 +1,11 @@
 const path = require('path');
-const downloadsPath = path.resolve(__dirname, './downloads');
+require('dotenv').config();
+/**
+ * Add the following values in .env file in the root directory
+ * HP_USERNAME=<username>
+ * HP_PASSWORD=<password>
+ * CHROME_DATA=<chrome user data folder path>
+ */
 
 exports.config = {
   framework: 'jasmine',
@@ -8,25 +14,23 @@ exports.config = {
     defaultTimeoutInterval: 150000,
     includeStackTrace: true
   },
-  directConnect: true, 
+  directConnect: true,
   getPageTimeout: 150000,
   allScriptsTimeout: 120000,
   specs: ['./spec/**/*.*'],
   capabilities: {
     browserName: 'chrome',
-    elementScrollBehavior: 1,
-    nativeEvents: false,
-     chromeOptions: {
+    chromeOptions: {
       w3c: false,
-      args: ['--headless', '--disable-gpu'],
-      // args: ['--user-data-dir=C:/Users/ASUS/AppData/Local/Google/Chrome/User Data'],
-      prefs: {
-        credentials_enable_service: true,
-        profile: {
-          password_manager_enabled: true
-        }
-      }
-    } 
+      // args: ['--headless', '--disable-gpu'],
+      args: ['--user-data-dir=' + process.env.CHROME_DATA, '--disable-gpu']
+    }
+  },
+  params: {
+    login: {
+      username: process.env.HP_USERNAME,
+      password: process.env.HP_PASSWORD
+    }
   },
   onPrepare: () => {
     EC = protractor.ExpectedConditions;
