@@ -11,6 +11,19 @@ const fillWithoutEvent = async (fieldData, nullCheck = false) => {
   }, fieldData, nullCheck);
 }
 
+const fillWithClick = async (fieldData, clickItem) => {
+  await browser.executeScript((fieldData) => {
+    const elem = document.getElementById(fieldData.elemId);
+    if (nullCheck ? !elem.value : true) {
+      elem.value = fieldData.elemVal;
+    }
+  }, fieldData, clickItem);
+  if (clickItem) {
+    await browser.sleep(1000);
+    await browser.executeScript(`${clickItem}.click()`);
+  }
+}
+
 const fillWithChangeEvent = async (fieldData) => {
   await browser.executeScript((fieldData) => {
     let evt = new Event('change');
@@ -109,11 +122,8 @@ const automateAssignment = async () => {
                               await browser.sleep(updateFields.subCategory.waitTime);
 
                               // Enter Value for Business Service field if empty
-                              await fillWithKeypressEvent(updateFields.businessService);
+                              await fillWithKeypressEvent(updateFields.businessService/* , `document.getElementById('AC.incident.business_service').childNodes[1].childNodes[1].childNodes[3].childNodes[1]` */);
                               await browser.sleep(updateFields.businessService.waitTime);
-                              await browser.actions().sendKeys(protractor.Key.ENTER).perform();
-                              await browser.actions().sendKeys(protractor.Key.TAB).perform();
-                              await browser.sleep(1000);
 
                               // Enter Value for Configuration Item field if empty
                               // await fillWithKeypressEvent(updateFields.configItem);

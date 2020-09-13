@@ -1,7 +1,7 @@
 module.exports = {
   login: {
     domain: 'https://login.external.hp.com',
-    loadingTime: 15000,
+    loadingTime: 10000,
     usernameId: 'username',
     passwordId: 'password',
     submitButton: 'input[type="submit"]'
@@ -14,7 +14,7 @@ module.exports = {
   },
   incidents: {
     linkSelector: 'a.linked.formlink',
-    loadingTime: 60000,
+    loadingTime: 20000,
     saveButton: {
       selector: '#sysverb_update',
       text: 'Save and Exit',
