@@ -5,6 +5,7 @@ require('dotenv').config();
  * HP_USERNAME=<username>
  * HP_PASSWORD=<password>
  * CHROME_DATA=<chrome user data folder path>
+ * CHROME_BINARY=<chrome binary folder path>
  */
 
 exports.config = {
@@ -21,6 +22,7 @@ exports.config = {
   capabilities: {
     browserName: 'chrome',
     chromeOptions: {
+      binary: process.env.CHROME_BINARY,
       w3c: false,
       args: [/* '--user-data-dir=' + process.env.CHROME_DATA, '--headless',  */'--disable-gpu']
     }
