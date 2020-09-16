@@ -104,8 +104,10 @@ const automateAssignment = async () => {
                               // switch to the tab
                               await browser.switchTo().window(guid);
                               await browser.sleep(incidents.loadingTime);
-                              await browser.takeScreenshot().then((screenShot) => {
-                                fs.writeFile('./Last-Incident-Start.png', screenShot, 'base64', (err) => err && console.log);
+                              await browser.takeScreenshot().then((screenshot) => {
+                                fs.writeFile('./Last-Incident-Start.png', screenshot, 'base64',
+                                  (err) => err ? console.log(err) : console.log(Date())
+                                );
                               });
                               // perform here any actions needed on the new tab
 
@@ -144,11 +146,6 @@ const automateAssignment = async () => {
                                 .then(async () => await browser.actions().sendKeys(protractor.Key.TAB).perform())
                               await browser.sleep(updateFields.assignTo.waitTime);
 
-                              await browser.takeScreenshot().then((screenShot) => {
-                                fs.writeFile('./Last-Incident-Assigned.png', screenShot, 'base64', (err) => err && console.log);
-                              });
-                              await browser.sleep(1000);
-
                               // Check if the Save and Exit button isclickable or not, if not the execution will stop here
                               await browser.wait(EC.elementToBeClickable(element.all(by.cssContainingText(incidents.saveButton.selector, incidents.saveButton.text)).last()), 5000);
                               // Click on Save and Exit Button
@@ -156,6 +153,14 @@ const automateAssignment = async () => {
                               // Check if it is redirected to the following url, if not the execution will stop here
                               await browser.wait(EC.urlContains(incidents.verifyURL), incidents.saveButton.waitTime);
                               await browser.sleep(incidents.saveButton.waitTime);
+
+                              await browser.takeScreenshot().then((screenshot) => {
+                                fs.writeFile('./Last-Incident-Assigned.png', screenshot, 'base64',
+                                  (err) => err ? console.log(err) : console.log(Date())
+                                );
+                              });
+                              await browser.sleep(1000);
+
                               // close the new tab
                               await browser.close();
                               // switch back to the parent tab

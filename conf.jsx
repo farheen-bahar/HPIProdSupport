@@ -22,8 +22,7 @@ exports.config = {
     browserName: 'chrome',
     chromeOptions: {
       w3c: false,
-      // args: ['--headless', '--disable-gpu'],
-      // args: ['--user-data-dir=' + process.env.CHROME_DATA, '--disable-gpu']
+      args: [/* '--user-data-dir=' + process.env.CHROME_DATA, '--headless',  */'--disable-gpu']
     }
   },
   params: {
