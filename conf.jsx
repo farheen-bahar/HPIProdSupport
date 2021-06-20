@@ -24,7 +24,7 @@ exports.config = {
     chromeOptions: {
       binary: process.env.CHROME_BINARY,
       w3c: false,
-      args: [/* '--user-data-dir=' + process.env.CHROME_DATA, '--headless',  */'--disable-gpu']
+      args: [/* '--user-data-dir=' + process.env.CHROME_DATA, */'--headless',   '--disable-gpu']
     }
   },
   params: {

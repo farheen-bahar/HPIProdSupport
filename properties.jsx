@@ -46,6 +46,7 @@ module.exports = {
     businessService: {
       elemId: 'sys_display.incident.business_service',
       elemVal: 'hpit:w-webcustcare-prd',
+      // elemVal: '201081',
       onlyIfEmpty: true,
       waitTime: 5000
     },
@@ -69,7 +70,7 @@ module.exports = {
     },
     assignTo: {
       elemId: 'sys_display.incident.assigned_to',
-      elemVal: 'farheen.bahar@hp.com',
+      elemVal: 'aakash.nagori@hp.com',
       onlyIfEmpty: false,
       waitTime: 5000
     }

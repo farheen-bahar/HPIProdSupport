@@ -1,5 +1,6 @@
 const fs = require('fs');
 const { element, browser } = require('protractor');
+const { protractor } = require('protractor/built/ptor');
 const { login, dashboard, incidents, updateFields } = require('../properties.jsx');
 let incr = 0;
 
@@ -33,7 +34,7 @@ const fillWithChangeEvent = async (fieldData) => {
   }, fieldData);
 }
 
-const fillWithKeypressEvent = async (fieldData) => {
+const fillWithKeypressEvent = async (fieldData, isAutoComplete) => {
   await browser.executeScript((fieldData) => {
     if (!document.getElementById(fieldData.elemId).value) {
       let evtInput = new Event('input');
@@ -47,6 +48,13 @@ const fillWithKeypressEvent = async (fieldData) => {
       elem.dispatchEvent(evtChange);
     }
   }, fieldData);
+  if (isAutoComplete) {
+    await browser.sleep(1000);
+    await browser.actions().sendKeys(protractor.Key.ARROW_DOWN).perform();
+    await browser.sleep(1000);
+    await browser.actions().sendKeys(protractor.Key.ENTER).perform();
+    await browser.sleep(1000);
+  }
 }
 
 const automateLogin = async () => {
@@ -124,8 +132,10 @@ const automateAssignment = async () => {
                               await browser.sleep(updateFields.subCategory.waitTime);
 
                               // Enter Value for Business Service field if empty
-                              await fillWithKeypressEvent(updateFields.businessService/* , `document.getElementById('AC.incident.business_service').childNodes[1].childNodes[1].childNodes[3].childNodes[1]` */);
+                              await fillWithKeypressEvent(updateFields.businessService, true);
                               await browser.sleep(updateFields.businessService.waitTime);
+                              // await browser.actions().mouseMove(element(by.id(updateFields.businessService.elemId))).mouseMove({x: 30, y: 30}).perform();
+                              // await browser.actions().click().perform();
 
                               // Enter Value for Configuration Item field if empty
                               // await fillWithKeypressEvent(updateFields.configItem);
