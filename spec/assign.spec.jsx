@@ -25,29 +25,31 @@ const fillWithClick = async (fieldData, clickItem) => {
   }
 }
 
-const fillWithChangeEvent = async (fieldData) => {
-  await browser.executeScript((fieldData) => {
+const fillWithChangeEvent = async (fieldData, isMonitoring = false) => {
+  await browser.executeScript((fieldData, isMonitoring) => {
+    // alert(isMonitoring);
     let evt = new Event('change');
     const elem = document.getElementById(fieldData.elemId);
-    elem.value = fieldData.elemVal;
+    elem.value = isMonitoring ? fieldData.altElemVal : fieldData.elemVal;
     elem.dispatchEvent(evt);
-  }, fieldData);
+  }, fieldData, isMonitoring);
 }
 
-const fillWithKeypressEvent = async (fieldData, isAutoComplete) => {
-  await browser.executeScript((fieldData) => {
+const fillWithKeypressEvent = async (fieldData, isAutoComplete, isMonitoring = false) => {
+  await browser.executeScript((fieldData, isMonitoring) => {
+    console.log(fieldData.elemId, isMonitoring);
     if (!document.getElementById(fieldData.elemId).value) {
       let evtInput = new Event('input');
       let evtChange = new Event('change');
       let evtKeypress = document.createEvent('KeyboardEvent');
       evtKeypress.initKeyboardEvent('keypress', true, true, window, 0, 0, 0, 0, 0, 'e'.charCodeAt(0));
       const elem = document.getElementById(fieldData.elemId);
-      elem.value = fieldData.elemVal;
+      elem.value = isMonitoring ? fieldData.altElemVal : fieldData.elemVal;
       elem.dispatchEvent(evtInput);
       elem.dispatchEvent(evtKeypress);
       elem.dispatchEvent(evtChange);
     }
-  }, fieldData);
+  }, fieldData, isMonitoring);
   if (isAutoComplete) {
     await browser.sleep(1000);
     await browser.actions().sendKeys(protractor.Key.ARROW_DOWN).perform();
@@ -120,15 +122,33 @@ const automateAssignment = async () => {
                               // perform here any actions needed on the new tab
 
                               // Impacted User Selection
-                              await fillWithoutEvent(updateFields.impactedUser, true);
+                              // await fillWithoutEvent(updateFields.impactedUser, true);
+                              // await browser.sleep(updateFields.impactedUser.waitTime);
+                              await fillWithKeypressEvent(updateFields.impactedUser, true);
+                              await browser.actions().click(element(by.id(updateFields.impactedUser.elemId))).perform()
+                                .then(async () => await browser.actions().sendKeys(protractor.Key.TAB).perform())
                               await browser.sleep(updateFields.impactedUser.waitTime);
 
+                              const { phrases, elemId } = updateFields.description;
+                              let isMonitoring = await (async () => {
+                                if (typeof(phrases) === 'object' && phrases.length) {
+                                  let desc = element(by.id(elemId)).getAttribute('value').then(val => val);
+                                  await browser.sleep(2000);
+                                  let result = phrases.map(val => desc.value_.startsWith(val)).filter(Boolean);
+                                  return result.length ? result[0] : false;
+                                }
+                                return false;
+                              })();
+                              await browser.sleep(2000);
+                              
                               // Category Selection
-                              await fillWithChangeEvent(updateFields.category);
+                            
+                              await fillWithChangeEvent(updateFields.category, isMonitoring);
                               await browser.sleep(updateFields.category.waitTime);
-
+                                                      
                               // Sub-Category Selection
-                              await fillWithChangeEvent(updateFields.subCategory);
+                            
+                              await fillWithChangeEvent(updateFields.subCategory, isMonitoring);
                               await browser.sleep(updateFields.subCategory.waitTime);
 
                               // Enter Value for Business Service field if empty
@@ -151,7 +171,7 @@ const automateAssignment = async () => {
 
                               // Enter Value for Assigned To field
                               // console.log('protractor.Key', protractor.Key);
-                              await fillWithKeypressEvent(updateFields.assignTo);
+                              await fillWithKeypressEvent(updateFields.assignTo, true, isMonitoring);
                               await browser.actions().click(element(by.id(updateFields.assignTo.elemId))).perform()
                                 .then(async () => await browser.actions().sendKeys(protractor.Key.TAB).perform())
                               await browser.sleep(updateFields.assignTo.waitTime);

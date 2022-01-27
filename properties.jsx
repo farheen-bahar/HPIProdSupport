@@ -7,7 +7,10 @@ module.exports = {
     submitButton: 'input[type="submit"]'
   },
   dashboard: {
-    url: 'https://hpitprod.service-now.com/nav_to.do?uri=%2Fincident_list.do%3Fsysparm_query%3Dassignment_groupDYNAMICd6435e965f510100a9ad2572f2b47744%255Eassigned_toISEMPTY%255EstateNOT%2520IN6%252C7%26sysparm_first_row%3D1%26sysparm_view%3D',
+    // url: 'https://hpitprod.service-now.com/nav_to.do?uri=%2Fincident_list.do%3Fsysparm_query%3Dassignment_groupDYNAMICd6435e965f510100a9ad2572f2b47744%255Eassigned_toISEMPTY%255EstateNOT%2520IN6%252C7%26sysparm_first_row%3D1%26sysparm_view%3D',
+    // url: 'https://hpitprod.service-now.com/nav_to.do?uri=%2Fincident_list.do%3Fsysparm_view%3D%26sysparm_query%3Dassignment_groupDYNAMICd6435e965f510100a9ad2572f2b47744%255Eassigned_to%253D%26sysparm_fixed_query%3D',
+    url: 'https://hpitprod.service-now.com/nav_to.do?uri=%2Fincident_list.do%3Fsysparm_query%3Dassignment_groupDYNAMICd6435e965f510100a9ad2572f2b47744%255Eassigned_toISEMPTY%255EstateNOT%2520IN7%26sysparm_first_row%3D1%26sysparm_view%3D',
+    // url: 'https://hpitprod.service-now.com/nav_to.do?uri=%2Fincident_list.do%3Fsysparm_query%3Dassignment_groupDYNAMICd6435e965f510100a9ad2572f2b47744%255Eshort_descriptionSTARTSWITHRULE%255Estate%253D6%26sysparm_first_row%3D1%26sysparm_view%3D',
     minExecutionTime: 120000,
     loadingTime: 20000,
     contentIFrameIndex: 'gsft_main'
@@ -18,30 +21,33 @@ module.exports = {
     saveButton: {
       selector: '#sysverb_update',
       text: 'Save and Exit',
-      waitTime: 5000
+      waitTime: 10000
     },
     verifyURL: 'https://hpitprod.service-now.com/incident_list.do'
   },
   updateFields: {
     impactedUser: {
       elemId: 'sys_display.incident.u_impacted_user',
-      elemVal: 'Farheen Bahar',
+      // elemVal: 'Farheen Bahar',
+      elemVal: 'farheen.bahar@hp.com',
       onlyIfEmpty: true,
-      waitTime: 1000
+      waitTime: 7000
     },
     category: {
       elemId: 'incident.category',
       // elemVal: 'inquiry',
       elemVal: 'businessapplication',
+      altElemVal: 'monitoring',
       onlyIfEmpty: false,
-      waitTime: 5000
+      waitTime: 7000
     },
     subCategory: {
       elemId: 'incident.subcategory',
       // elemVal: 'internal application',
       elemVal: 'Reporting Error',
+      altElemVal: 'Application',
       onlyIfEmpty: false,
-      waitTime: 2000
+      waitTime: 7000
     },
     businessService: {
       elemId: 'sys_display.incident.business_service',
@@ -70,9 +76,15 @@ module.exports = {
     },
     assignTo: {
       elemId: 'sys_display.incident.assigned_to',
+      // elemVal: 'farheen.bahar@hp.com',
       elemVal: 'aakash.nagori@hp.com',
+      altElemVal: 'ashok.kumar5@hp.com',
       onlyIfEmpty: false,
       waitTime: 5000
+    },
+    description: {
+      elemId: 'incident.short_description',
+      phrases: ['Rule name:', 'SIS', 'URL'],
     }
   }
 };

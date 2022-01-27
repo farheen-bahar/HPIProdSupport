@@ -17,6 +17,6 @@
     "protractor": "7.0.0"
   },
   "devDependencies": {
-    "jasmine": "3.6.1"
+    "jasmine": "3.10.0"
   }
 }
