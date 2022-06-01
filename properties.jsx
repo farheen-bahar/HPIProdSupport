@@ -77,14 +77,14 @@ module.exports = {
     assignTo: {
       elemId: 'sys_display.incident.assigned_to',
       // elemVal: 'farheen.bahar@hp.com',
-      elemVal: 'aakash.nagori@hp.com',
+      elemVal: 'ashan.johny@hp.com',
       altElemVal: 'ashok.kumar5@hp.com',
       onlyIfEmpty: false,
       waitTime: 5000
     },
     description: {
       elemId: 'incident.short_description',
-      phrases: ['Rule name:', 'SIS', 'URL'],
+      phrases: ['Rule name:', 'SIS', 'URL', 'Splunk'],
     }
   }
 };

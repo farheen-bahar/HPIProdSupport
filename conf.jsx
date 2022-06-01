@@ -16,6 +16,7 @@ exports.config = {
     includeStackTrace: true
   },
   directConnect: true,
+  singleRun: false,
   getPageTimeout: 150000,
   allScriptsTimeout: 120000,
   specs: ['./spec/**/*.*'],
@@ -24,7 +25,7 @@ exports.config = {
     chromeOptions: {
       binary: process.env.CHROME_BINARY,
       w3c: false,
-      args: [/* '--user-data-dir=' + process.env.CHROME_DATA, */'--headless',  '--disable-gpu']
+      args: ['--user-data-dir=' + process.env.CHROME_DATA, '--headless']
     }
   },
   params: {
