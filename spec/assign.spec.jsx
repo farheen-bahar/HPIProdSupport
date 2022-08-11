@@ -27,6 +27,7 @@ const fillWithClick = async (fieldData, clickItem) => {
 
 const fillWithChangeEvent = async (fieldData, isMonitoring = false) => {
   await browser.executeScript((fieldData, isMonitoring) => {
+    console.log(fieldData.elemId, isMonitoring);
     // alert(isMonitoring);
     let evt = new Event('change');
     const elem = document.getElementById(fieldData.elemId);

@@ -21,7 +21,7 @@ module.exports = {
     saveButton: {
       selector: '#sysverb_update',
       text: 'Save and Exit',
-      waitTime: 10000
+      waitTime: 15000
     },
     verifyURL: 'https://hpitprod.service-now.com/incident_list.do'
   },
@@ -37,17 +37,19 @@ module.exports = {
       elemId: 'incident.category',
       // elemVal: 'inquiry',
       elemVal: 'businessapplication',
-      altElemVal: 'monitoring',
+      // altElemVal: 'monitoring',
+      altElemVal: 'businessapplication',
       onlyIfEmpty: false,
       waitTime: 7000
     },
     subCategory: {
       elemId: 'incident.subcategory',
       // elemVal: 'internal application',
-      elemVal: 'Reporting Error',
-      altElemVal: 'Application',
+      elemVal: 'Data error/ missing data',
+      // altElemVal: 'Application',
+      altElemVal: 'Monitoring',
       onlyIfEmpty: false,
-      waitTime: 7000
+      waitTime: 10000
     },
     businessService: {
       elemId: 'sys_display.incident.business_service',
