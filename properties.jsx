@@ -9,7 +9,8 @@ module.exports = {
   dashboard: {
     // url: 'https://hpitprod.service-now.com/nav_to.do?uri=%2Fincident_list.do%3Fsysparm_query%3Dassignment_groupDYNAMICd6435e965f510100a9ad2572f2b47744%255Eassigned_toISEMPTY%255EstateNOT%2520IN6%252C7%26sysparm_first_row%3D1%26sysparm_view%3D',
     // url: 'https://hpitprod.service-now.com/nav_to.do?uri=%2Fincident_list.do%3Fsysparm_view%3D%26sysparm_query%3Dassignment_groupDYNAMICd6435e965f510100a9ad2572f2b47744%255Eassigned_to%253D%26sysparm_fixed_query%3D',
-    url: 'https://hpitprod.service-now.com/nav_to.do?uri=%2Fincident_list.do%3Fsysparm_query%3Dassignment_groupDYNAMICd6435e965f510100a9ad2572f2b47744%255Eassigned_toISEMPTY%255EstateNOT%2520IN7%26sysparm_first_row%3D1%26sysparm_view%3D',
+    // url: 'https://hpitprod.service-now.com/nav_to.do?uri=%2Fincident_list.do%3Fsysparm_query%3Dassignment_groupDYNAMICd6435e965f510100a9ad2572f2b47744%255Eassigned_toISEMPTY%255EstateNOT%2520IN7%26sysparm_first_row%3D1%26sysparm_view%3D',
+    url: 'https://hpitprod.service-now.com/nav_to.do?uri=%2Fincident_list.do%3Fsysparm_query%3Dassignment_groupDYNAMICd6435e965f510100a9ad2572f2b47744%255Eassigned_toISEMPTY%255EstateNOT%2520IN7%252C8%26sysparm_first_row%3D1%26sysparm_view%3D',
     // url: 'https://hpitprod.service-now.com/nav_to.do?uri=%2Fincident_list.do%3Fsysparm_query%3Dassignment_groupDYNAMICd6435e965f510100a9ad2572f2b47744%255Eshort_descriptionSTARTSWITHRULE%255Estate%253D6%26sysparm_first_row%3D1%26sysparm_view%3D',
     minExecutionTime: 120000,
     loadingTime: 20000,
