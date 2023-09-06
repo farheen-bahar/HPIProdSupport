@@ -21,11 +21,16 @@ exports.config = {
   allScriptsTimeout: 120000,
   specs: ['./spec/**/*.*'],
   capabilities: {
-    browserName: 'chrome',
-    chromeOptions: {
-      binary: process.env.CHROME_BINARY,
-      w3c: false,
-      args: ['--user-data-dir=' + process.env.CHROME_DATA, '--headless']
+    // browserName: 'chrome',
+    // chromeOptions: {
+    //   binary: process.env.CHROME_BINARY,
+    //   w3c: false,
+    //   args: ['--disable-gpu','--user-data-dir=' + process.env.CHROME_DATA, '--no-sandbox']
+    // }
+    browserName: 'firefox',
+    'moz:firefoxOptions': {
+      //  args: [ "--headless" , "--safe-mode"]
+      args: [ "--safe-mode", '--user-data-dir=' + process.env.FIREFOX_DATA]
     }
   },
   params: {

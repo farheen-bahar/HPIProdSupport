@@ -1,7 +1,7 @@
 module.exports = {
   login: {
     domain: 'https://login.external.hp.com',
-    loadingTime: 10000,
+    loadingTime: 500,
     usernameId: 'username',
     passwordId: 'password',
     submitButton: 'input[type="submit"]'
@@ -12,13 +12,14 @@ module.exports = {
     // url: 'https://hpitprod.service-now.com/nav_to.do?uri=%2Fincident_list.do%3Fsysparm_query%3Dassignment_groupDYNAMICd6435e965f510100a9ad2572f2b47744%255Eassigned_toISEMPTY%255EstateNOT%2520IN7%26sysparm_first_row%3D1%26sysparm_view%3D',
     url: 'https://hpitprod.service-now.com/nav_to.do?uri=%2Fincident_list.do%3Fsysparm_query%3Dassignment_groupDYNAMICd6435e965f510100a9ad2572f2b47744%255Eassigned_toISEMPTY%255EstateNOT%2520IN7%252C8%26sysparm_first_row%3D1%26sysparm_view%3D',
     // url: 'https://hpitprod.service-now.com/nav_to.do?uri=%2Fincident_list.do%3Fsysparm_query%3Dassignment_groupDYNAMICd6435e965f510100a9ad2572f2b47744%255Eshort_descriptionSTARTSWITHRULE%255Estate%253D6%26sysparm_first_row%3D1%26sysparm_view%3D',
-    minExecutionTime: 120000,
-    loadingTime: 20000,
-    contentIFrameIndex: 'gsft_main'
+    minExecutionTime: 250000,
+    loadingTime: 30000,
+    contentIFrameIndex: 'gsft_main', 
+    domain: 'https://hpitprod.service-now.com/'
   },
   incidents: {
     linkSelector: 'a.linked.formlink',
-    loadingTime: 20000,
+    loadingTime: 30000,
     saveButton: {
       selector: '#sysverb_update',
       text: 'Save and Exit',
@@ -55,9 +56,16 @@ module.exports = {
     businessService: {
       elemId: 'sys_display.incident.business_service',
       elemVal: 'hpit:w-webcustcare-prd',
+      altElemVal:'hpit:w-ppssk-prtl-prd',
       // elemVal: '201081',
       onlyIfEmpty: true,
       waitTime: 5000
+    },
+    businessApplication: {
+      elemId: 'sys_display.incident.cmdb_ci_business_app',
+      elemVal: 'WISE',
+      onlyIfEmpty: false,
+      waitTime: 10000
     },
     configItem: {
       elemId: 'sys_display.incident.cmdb_ci',

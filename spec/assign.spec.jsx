@@ -73,6 +73,7 @@ const automateLogin = async () => {
         document.querySelector(loginElem.submitButton).click();
       }
     }, login, browser.params.login);
+    console.log("Line 76");
   } catch (error) {
     console.log(error);
   }
@@ -81,17 +82,22 @@ const automateLogin = async () => {
 const automateAssignment = async () => {
   try {
     // select <iframe id="gsft_main">
+    console.log("Line 85");
     await browser.switchTo().frame(dashboard.contentIFrameIndex)
       .then(async () => {
+        console.log("Line 87");
         // disable waiting angular execution
         browser.waitForAngularEnabled(false);
+        console.log("Line 90");
         // select all incident links in the page & iterate
         await $$(incidents.linkSelector).each(async (elem, index) => {
+          console.log("Line 93");
           try {
             // filtering only 1 link at once
             if (index < 1) {
               await browser.sleep(1000);
               // wait for 5 secs for the link to be clickable, otherwise it will stop execution here
+              console.log("Line 99");
               await browser.wait(EC.elementToBeClickable($$(incidents.linkSelector).get(incr)), 5000);
               // select the link by using the index from the incr variable & move mouse over it
               await browser.actions().mouseMove($$(incidents.linkSelector).get(incr)).perform()
@@ -233,14 +239,21 @@ describe('Servicenow Automation', () => {
       await browser.driver.getCurrentUrl().then(async (url) => {
         if (url.indexOf(login.domain) >= 0) {
           await browser.driver.get(url);
-          await setTimeout(async () => {
+          console.log("Line 236");
             // Calling the process method to login
             await automateLogin();
-          }, login.loadingTime);
         }
-        await browser.sleep(1000);
+        await browser.sleep(10000);
         // Calling the process method where all tasks are assigned
-        await automateAssignment();
+        await setTimeout( () => {
+           browser.driver.getCurrentUrl().then(async (url) => {
+            if (url.indexOf(dashboard.domain) >= 0) {
+              console.log("Line 249");
+              await automateAssignment();
+            }
+          });
+        },8000);
+        console.log("Line 243");
       });
     }, dashboard.loadingTime);
 

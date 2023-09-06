@@ -6,15 +6,20 @@
     "start": "webdriver-manager start",
     "cron": "node cron-server.jsx",
     "assign": "protractor conf.jsx --specs='spec/assign.spec.jsx'",
-    "assign-s": "protractor conf.jsx --specs='spec/assign-standalone.spec.jsx'"
+    "assign-s": "protractor conf.jsx --specs='spec/assign-standalone.spec.jsx'",
+    "download-chromedriver": "curl -o chromedriver.zip https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/116.0.5845.96/win64/chromedriver-win64.zip"
   },
   "dependencies": {
     "child_process": "1.0.2",
+    "chromedriver": "116.0.0",
     "dotenv": "8.2.0",
     "express": "4.17.1",
+    "extract-zip": "2.0.1",
     "fs": "0.0.1-security",
     "node-cron": "2.0.3",
-    "protractor": "7.0.0"
+    "protractor": "7.0.0",
+    "selenium-webdriver": "4.11.1",
+    "unzipper": "0.10.14"
   },
   "devDependencies": {
     "jasmine": "3.10.0"
