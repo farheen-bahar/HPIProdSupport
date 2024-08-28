@@ -1,12 +1,6 @@
 const path = require('path');
+const childProcess = require('child_process');
 require('dotenv').config();
-/**
- * Add the following values in .env file in the root directory
- * HP_USERNAME=<username>
- * HP_PASSWORD=<password>
- * CHROME_DATA=<chrome user data folder path>
- * CHROME_BINARY=<chrome binary folder path>
- */
 
 exports.config = {
   framework: 'jasmine',
@@ -20,19 +14,19 @@ exports.config = {
   getPageTimeout: 150000,
   allScriptsTimeout: 120000,
   specs: ['./spec/**/*.*'],
+  chromeDriver:'C:/Users/fbahar/Downloads/chromedriver-win64/chromedriver.exe',
   capabilities: {
-    // browserName: 'chrome',
-    // chromeOptions: {
-    //   binary: process.env.CHROME_BINARY,
-    //   w3c: false,
-    //   args: ['--disable-gpu','--user-data-dir=' + process.env.CHROME_DATA, '--no-sandbox']
-    // }
-    browserName: 'firefox',
-    'moz:firefoxOptions': {
-      //  args: [ "--headless" , "--safe-mode"]
-      args: [ "--safe-mode", '--user-data-dir=' + process.env.FIREFOX_DATA]
+    browserName: 'chrome',
+    chromeOptions: {
+      binary: 'C:/Program Files/Google/Chrome/Application/chrome.exe',
+      args: [
+        '--disable-gpu',
+        '--no-sandbox',
+        `--user-data-dir=${process.env.CHROME_DATA}`
+      ]
     }
   },
+  directConnect: true,
   params: {
     login: {
       username: process.env.HP_USERNAME,
@@ -41,5 +35,14 @@ exports.config = {
   },
   onPrepare: () => {
     EC = protractor.ExpectedConditions;
-  }
+  },
+  // beforeLaunch: () => {
+  //   childProcess.exec('webdriver-manager update --versions.chrome=127.0.6533.120', (error, stdout, stderr) => {
+  //     if (error) {
+  //       console.error(`Error updating ChromeDriver: ${error}`);
+  //     } else {
+  //       console.log(`ChromeDriver updated to version 127.0.6533.120`);
+  //     }
+  //   });
+  // }
 }

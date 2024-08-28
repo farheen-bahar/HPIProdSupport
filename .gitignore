@@ -3,5 +3,7 @@ node_modules/
 *.jpg
 *.png
 package-lock.json
-.env
 .vscode/launch.json
+undefined/First Run
+undefined/Local State
+undefined/Default/Preferences
